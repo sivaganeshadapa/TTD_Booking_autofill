@@ -84,10 +84,21 @@ function createCard(i) {
     </div>
   `;
 
-  // Collapse toggle
+  // Collapse toggle (Accordion style)
   card.querySelector('.pilgrim-card-header').addEventListener('click', (e) => {
     if (e.target.classList.contains('btn-clear-pilgrim')) return;
-    card.classList.toggle('collapsed');
+    
+    const isCurrentlyCollapsed = card.classList.contains('collapsed');
+    
+    // First, collapse all cards
+    document.querySelectorAll('.pilgrim-card').forEach(c => {
+      c.classList.add('collapsed');
+    });
+    
+    // Then, if the clicked card was collapsed, expand it
+    if (isCurrentlyCollapsed) {
+      card.classList.remove('collapsed');
+    }
   });
 
   // Live dot update
@@ -124,8 +135,7 @@ async function loadAllData() {
     setField(`idNumber_${i}`, p.idNumber);
     updateDot(i);
 
-    // Expand if has data
-    if (p.name) document.getElementById(`card_${i}`)?.classList.remove('collapsed');
+    // Do not auto-expand all cards with data to prevent UI breakout
   }
 
   // Settings
