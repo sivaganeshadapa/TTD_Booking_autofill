@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TTD Darshan Auto-Fill Pro</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+
+    <header>
+      <div class="header-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2L3 9L4.5 10.5L12 4.5L19.5 10.5L21 9L12 2Z" fill="url(#goldGradient)"/>
+          <path d="M12 7V21M7 11V21M17 11V21" stroke="url(#goldGradient)" stroke-width="2" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="goldGradient" x1="12" y1="2" x2="12" y2="21" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F5C842" />
+              <stop offset="1" stop-color="#C8960C" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>TTD Darshan</h1>
+        <p>Auto-Fill Pro</p>
+      </div>
+    </header>
+
+    <!-- Status banner -->
+    <div id="statusBanner" class="status-banner hidden"></div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" data-tab="pilgrims">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Pilgrims
+      </button>
+      <button class="tab" data-tab="settings">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        Settings
+      </button>
+      <button class="tab" data-tab="help">
+        <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Help
+      </button>
+    </div>
+
+    <!-- ── PILGRIMS TAB ── -->
+    <div id="tab-pilgrims" class="tab-content active">
+
+      <div class="action-row">
+        <button id="btnAutoFill" class="btn btn-primary">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          <span>Start Auto-Fill</span>
+        </button>
+        <button id="btnSave" class="btn btn-save">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+          <span>Save</span>
+        </button>
+      </div>
+
+      <div class="pilgrim-list" id="pilgrimList">
+        <!-- Cards injected by popup.js -->
+      </div>
+
+    </div>
+
+    <!-- ── SETTINGS TAB ── -->
+    <div id="tab-settings" class="tab-content">
+      <div class="settings-group">
+        <h3>Automation Options</h3>
+
+        <label class="toggle-row">
+          <span>Auto-click Continue button</span>
+          <label class="toggle">
+            <input type="checkbox" id="optContinue" checked />
+            <span class="slider"></span>
+          </label>
+        </label>
+
+        <label class="toggle-row">
+          <span>Auto-click Pay Now button</span>
+          <label class="toggle">
+            <input type="checkbox" id="optPayNow" checked />
+            <span class="slider"></span>
+          </label>
+        </label>
+
+        <div class="setting-note">
+          These options let you review before each step. Disable to stop automation at that point.
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>Data Management</h3>
+        <button id="btnClearAll" class="btn btn-danger">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+          Clear All Pilgrim Data
+        </button>
+      </div>
+    </div>
+
+    <!-- ── HELP TAB ── -->
+    <div id="tab-help" class="tab-content">
+      <div class="help-content">
+        <h3>How to use</h3>
+        <ol>
+          <li>Save your pilgrim details in the <strong>Pilgrims</strong> tab</li>
+          <li>On TTD website, log in and select your booking date & slot</li>
+          <li>Select the number of pilgrims and click <strong>Continue</strong></li>
+          <li>When the pilgrim details form appears, click <strong>Start Auto-Fill</strong> in this extension</li>
+          <li>The extension will fill all fields, click Continue, then click Pay Now automatically</li>
+        </ol>
+
+        <h3>Tips</h3>
+        <ul>
+          <li>Fill pilgrims in order (1, 2, 3…) — the extension fills from first saved pilgrim</li>
+          <li>If you book for fewer people than saved, the extra entries are ignored</li>
+          <li>Name must match your Aadhaar Card exactly</li>
+          <li>Works for both SED and Special Sevas darshan booking</li>
+        </ul>
+      </div>
+    </div>
+    
+    <footer>
+      <p>Built and developed by Siva Ganesh Adapa</p>
+      <p>Shiv Ganesh with love Govinda</p>
+    </footer>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

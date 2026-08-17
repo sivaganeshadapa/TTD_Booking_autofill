@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "TTD Darshan Auto-Fill Pro",
+  "version": "2.0.0",
+  "description": "Automatically fill pilgrim details, continue, and reach payment for TTD Special Entry Darshan booking.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://ttdevasthanams.ap.gov.in/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "TTD Darshan Auto-Fill Pro"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ttdevasthanams.ap.gov.in/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
