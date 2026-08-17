@@ -24,15 +24,16 @@ body {
   font-family: 'Segoe UI', system-ui, sans-serif;
   background: var(--cream);
   width: 400px;
-  min-height: 500px;
+  height: 600px; /* Force to max chrome extension height */
   color: var(--text-dark);
   font-size: 13px;
+  margin: 0;
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  min-height: 500px;
+  height: 100%;
 }
 
 /* ── HEADER ─────────────────────────────────────────── */
@@ -109,8 +110,14 @@ header {
 .tab.active { color: var(--maroon); border-bottom-color: var(--maroon); background: var(--cream); }
 
 /* ── TAB CONTENT ────────────────────────────────────── */
-.tab-content { display: none; padding: 12px; flex: 1; }
-.tab-content.active { display: block; }
+.tab-content { 
+  display: none; 
+  padding: 12px; 
+  flex: 1; 
+  flex-direction: column; 
+  min-height: 0; 
+}
+.tab-content.active { display: flex; }
 
 /* ── ACTION ROW ─────────────────────────────────────── */
 .action-row {
@@ -177,9 +184,10 @@ header {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  max-height: 380px;
+  flex: 1;
   overflow-y: auto;
-  padding-right: 2px;
+  padding-right: 4px;
+  min-height: 0;
 }
 
 .pilgrim-list::-webkit-scrollbar { width: 4px; }
